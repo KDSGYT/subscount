@@ -1,28 +1,56 @@
-
+/**
+ * you can store data in client cookies to store store history
+ *  you can use that history to access the youtube channels
+ */
 const input = document.getElementById("username");
 const button = document.querySelector('.submit')
 const counts = document.querySelector('.subs');
+
+
+async function fetchAndCallback(url,callback, nxtUrl){
+    const api = "AIzaSyDl5bov83fBW37QXinJvn4bS9cf-czCNxY";
+    await fetch(url)
+        .then(data => data.json())
+        .then(data => {
+            console.log(data);
+            try {
+                let item = data.items[0];
+                generateHTML(item);
+            } catch (err) {
+                throw new Error(`${err.message}`);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            let url = nxtUrl;
+            if(callback){
+                callback(url); //callback function
+            } else {
+                alert(err);
+            }
+        })
+}
 
 /**
  * Get data from the api and execute generateHTML() function
  * @param { string } username as entered by the user
  */
-async function fetchData(username) {
+async function fetchDataByUsername(input = "pewdiepie") {
     const api = "AIzaSyDl5bov83fBW37QXinJvn4bS9cf-czCNxY";
-    let url = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=${username}&key=${api}`;
-    await fetch(url)
-        .then(data => data.json())
-        .then(data => {
-            try {
-                let stat = data.items[0].statistics;
-                generateHTML(stat);
-            } catch (err) {
-                throw new Error(err.message);
-            }
-        })
-        .catch(err => alert(err.message))
-        .finally()
+    let url = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=${input}&key=${api}`;
+    fetchAndCallback(url, fetchDataById, `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${input}&key=${api}` );
 }
+
+
+/**
+ * fetchDataUsingId
+ * @param { string } url string to fetch data from if the default one doesn't work 
+ */
+function fetchDataById( url ){
+    fetchAndCallback(url);   
+}
+
+
 
 /**
  * GenerateHTML: outputs html to the DOM using selectors.
@@ -31,8 +59,9 @@ async function fetchData(username) {
 function generateHTML(data) {
     counts.innerHTML = `
         <span>
-            Subscriber: <span>${shortNumber(data.subscriberCount)}</span>
-            Views: <span>${shortNumber(data.viewCount)}</span>
+            <span>${data.snippet.title}: <span>
+            Subscriber: <span>${shortNumber(data.statistics.subscriberCount)}</span>
+            Views: <span>${shortNumber(data.statistics.viewCount)}</span>
         </span>`
 }
 
@@ -42,15 +71,12 @@ function generateHTML(data) {
  */
 function getData(key) {
     if (key === "Enter" && input.value !== (null || "" || " ")) {
-        // console.log(typeof input.value)
-        // let username = input.value.split(" ").join("").toLowerCase().toString()
-        // console.log(typeof username);
-        fetchData(input.value);
+        fetchDataByUsername(input.value);
     }
 }
 
 /**
- * 
+ * Converts the numbers into 
  * @param { number } labelValue the value you to short in M OR K
  */
 function shortNumber (labelValue) {
@@ -62,7 +88,7 @@ function shortNumber (labelValue) {
     // Six Zeroes for Millions 
     : Math.abs(Number(labelValue)) >= 1.0e+6
 
-    ? (Math.abs(Number(labelValue))).toFixed(2) / 1.0e+6 + "M"
+    ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(1) + "M"
     // Three Zeroes for Thousands
     : (Math.abs(Number(labelValue))) >= 1.0e+3
 
@@ -75,3 +101,8 @@ function shortNumber (labelValue) {
 // Event Listeners for submit events
 document.addEventListener('keyup', (event) => getData(event.key));
 // button.addEventListener('click', () => getData("Enter"));
+
+
+// function calls on page load
+
+fetchDataByUsername();
