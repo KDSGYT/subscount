@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Subs count</title>
-  </head>
-  <body>
-    <div class="window">
-      <div class="subwindow">
-        <div class="form">
-          <input
-            type="text"
-            name="name"
-            autocomplete="off"
-            id="username"
-            required
-          />
-          <label for="name" class="label-name">
-            <span class="content-name">
-              Search
-            </span>
-          </label>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>Subs count</title>
+</head>
+
+<body>
+  <div class="window">
+
+    <div class="subwindow">
+      <!-- card to display the information from the search -->
+      <div class="card">
+        <div class="card-top">
+          
         </div>
-  
-        <div class="result">
-          <div class="subs"></div>
+        <span class="card-circle"></span>
+        <div class="card-bottom">
+          <div class="result">
+            <div class="subs"></div>
+          </div>
         </div>
       </div>
+      <div class="form">
+        <input type="text" name="name" autocomplete="off" id="username" required />
+        <label for="name" class="label-name">
+          <span class="content-name">
+            Search
+          </span>
+        </label>
+      </div>
     </div>
+  </div>
 
-    <!-- <script type="application/json" src="./access.json"></script> -->
-    <script src="./js/script.js"></script>
-  </body>
+  <!-- <script type="application/json" src="./access.json"></script> -->
+  <script src="./js/script.js"></script>
+</body>
+
 </html>

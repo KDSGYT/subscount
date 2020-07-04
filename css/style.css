@@ -5,28 +5,35 @@
   border-radius: 0px;
 }
 
-body{
-  background: linear-gradient(240.64deg, #6FCF97 0%, rgba(111, 207, 151, 0) 100%);
+body {
+  background: linear-gradient(
+    240.64deg,
+    #6fcf97 0%,
+    rgba(111, 207, 151, 0) 100%
+  );
   height: 100vh;
-
 }
 
-body, .window, .subwindow {
+body,
+.window,
+.subwindow {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   font-family: sans-serif;
 }
 
-.window{
+/* Form */
+.window {
   width: 100%;
-  height:80vh;
+  height: 80vh;
 }
-.subwindow{  
+.subwindow {
   width: 100%;
+  height: 100%;
 }
-.form{
+.form {
   /* border: 2px solid black; */
   font-size: 25px;
   width: 50%;
@@ -35,37 +42,35 @@ body, .window, .subwindow {
   overflow: hidden;
 
   /* background: blue; */
-
 }
 
-.form input[type="text"]{
+.form input[type="text"] {
   background-color: rgba(111, 207, 151, 0);
   font-size: 18px;
   width: 100%;
   height: 100%;
   color: #595f6e;
-  padding-top: 40px;
-  border:none;
+  padding-top: 45px;
+  border: none;
   border-bottom: 2px solid black;
   outline: none;
 }
 
-.form label{
+.form label {
   /* color:white; */
   position: absolute;
-  bottom:0px;
-  left:0;
+  bottom: 0px;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  
 }
-
-.form label::after{
+/* The blue border-bottom animation */
+.form label::after {
   content: "";
   position: absolute;
-  left:0;
-  bottom:-1px;
+  left: 0;
+  bottom: -1px;
   height: 100%;
   width: 100%;
   border-bottom: 3px solid #5fa8d3;
@@ -73,43 +78,94 @@ body, .window, .subwindow {
   transition: all 0.3s ease;
 }
 
-.content-name{
+.content-name {
   position: absolute;
-  bottom:5px;
+  bottom: 5px;
   left: 0;
   transition: all 0.3s ease;
 }
-
-.form input[type="text"]:focus + .label-name .content-name, 
-.form input[type="text"]:valid + .label-name .content-name{
+/* what to do when input is in focus */
+.form input[type="text"]:focus + .label-name .content-name,
+.form input[type="text"]:valid + .label-name .content-name {
   transform: translateY(-150%);
   font-size: 18px;
-  color:#5fa8d3;
+  color: #5fa8d3;
 }
 
+/* what to do when input is in focus */
 .form input[type="text"]:focus + .label-name::after,
-.form input[type="text"]:valid + .label-name::after{
+.form input[type="text"]:valid + .label-name::after {
   transform: translate(0%);
 }
 
+/* Results  */
 
-.result{
-  margin-top:10px;
+.card {
+  margin-top: 20%;
+  width: 45%;
+  height: 35vw;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card .card-top {
+  background-image: url("../img/placeholderImage.png");
+  /* background-color: black; */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  width: 100%;
+  height: 60%;
+}
+
+.card .card-circle {
+  position: absolute;
+  border: 2px solid black;
+  width: 13vh;
+  height: 13vw;
+  top: 41%;
+  left:35.5%;
+  justify-content: space-around;
+  background-image: url("../img/placeholderImage.png");
+  background: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.result {
+  margin-top: 14%;
   position: relative;
   height: 30vh;
+  
 }
-.result .sub{
+.result .subs {
+  /* margin-top: 40%; */
   align-items: centers;
 }
-.result .sub span{
+/* .result .subs span {
   font-size: 30px;
+} */
+
+.result .subs span .channelTitle{
+  width:100%;
+  display: block;
+  text-align: center;
+  /* border:2px solid black; */
 }
 
+.stats{
+  margin-top: 1vh;
+  /* border:2px solid black; */
+  text-align: center;
+  font-size: larger;
+}
 
-@media (min-width: 800px){
-
-  .form{
-    width: 30%;
+@media (min-width: 800px) {
+  .form {
+    width: 35%;
   }
-
 }
