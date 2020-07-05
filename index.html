@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <link rel="stylesheet" href="./css/card.css">
+
   <link rel="stylesheet" href="./css/style.css" />
   <title>Subs count</title>
 </head>
@@ -19,12 +21,22 @@
           <img class="banner" src="" alt >
         </div>
         <span class="card-circle"></span>
+
+        <!-- Card bottom -->
         <div class="card-bottom">
           <div class="result">
-            <div class="subs"></div>
+            <div class="subs"><span>
+              <span class="channelTitle">Title</span>
+              <div class="stats">
+                  <span class="channelSubs">Subs: 12345 M</span>
+                  <span class="channelViews"> Views: 123 K</span>
+              </div>
+          </span></div>
           </div>
         </div>
       </div>
+
+      <!-- Search form  -->
       <div class="form">
         <input type="text" name="name" autocomplete="off" id="username" required />
         <label for="name" class="label-name">
@@ -33,6 +45,9 @@
           </span>
         </label>
       </div>
+        <!--Error  -->
+      <!-- <div class="error"></div> -->
+    
     </div>
   </div>
 

@@ -38,7 +38,7 @@ body,
   font-size: 25px;
   width: 50%;
   position: relative;
-  height: 70px;
+  height: 17%;
   overflow: hidden;
 
   /* background: blue; */
@@ -50,7 +50,7 @@ body,
   width: 100%;
   height: 100%;
   color: #595f6e;
-  padding-top: 45px;
+  padding-top: 20%;
   border: none;
   border-bottom: 2px solid black;
   outline: none;
@@ -99,11 +99,10 @@ body,
 }
 
 /* Results  */
-
 .card {
   margin-top: 20%;
-  width: 45%;
-  height: 35vw;
+  width: 50%;
+  height: 50%;
   position: relative;
   background-color: white;
   border-radius: 10px;
@@ -112,28 +111,33 @@ body,
 
 .card .card-top {
   /* background-color: black; */
+  display: flex;
+  background-image: url("../img/placeholderImage.png");
+
   background-repeat: no-repeat;
+
   background-position: center;
   background-size: cover;
-
+  justify-content: space-around;
   width: 100%;
   height: 60%;
 }
 
-.card-top .banner{
+.card-top .banner {
   position: absolute;
-  left:-73%;
+  /* left:-73%; */
   top: 0;
 }
 
 .card .card-circle {
+  display: flex;
+  justify-content: space-around;
   position: absolute;
   border: 2px solid black;
-  width: 120px;
-  height: 120px;
-  top: 41%;
-  left: 35.5%;
-  justify-content: space-around;
+  width: 25%;
+  height: 30%;
+  top: 31%;
+  left: 36.5%;
   background-image: url("../img/placeholderImage.png");
   background: no-repeat;
   background-position: center;
@@ -142,42 +146,59 @@ body,
 }
 
 .result {
-  margin-top: 14%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
   position: relative;
-  height: 30vh;
+  height: 20%;
+  /* border: 2px solid black; */
 }
 .result .subs {
   /* margin-top: 40%; */
-  align-items: centers;
+  align-items: center;
 }
 /* .result .subs span {
-  font-size: 30px;
-} */
+    font-size: 30px;
+  } */
 
 .result .subs span .channelTitle {
   width: 100%;
   display: block;
   text-align: center;
+  font-size: x-large;
   /* border:2px solid black; */
 }
 
 .stats {
-  margin-top: 1vh;
+  margin-top: 10%;
   /* border:2px solid black; */
   text-align: center;
-  font-size: larger;
+  font-size: 1.3em;
 }
 
-@media screen and (max-width: 800px) and (min-width: 300px) {
+@media all and (min-width:321px) and (max-width: 500px) {
   .form {
     width: 80%;
+    height: 15%;
   }
-  .card{
-    width:60%;
+  .card {
+    margin-top: 30%;
+    height:60%;
+    width: 90%;
   }
-  .card .card-circle{
-    width: 58px;
-    height:58px;
+
+  .card .card-circle {
+    top: 45%;
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .result{
+    margin-top: 18%;
+  }
+
+  .stats{
+    margin-top:6%;
   }
 }
-/* @media screen and (min-width: 800px ) and (max-width:) */

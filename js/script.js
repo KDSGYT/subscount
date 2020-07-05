@@ -1,7 +1,11 @@
 /**
  * you can store data in client cookies to store store history
  *  you can use that history to access the youtube channels
+ * 
+ * 
+ * add a search button for those who cannot see press enter line on smartphones
  */
+
 console.warn("Make sure you know what you are doing");
 console.warn("Made by KDSG (Karan Pal Singh) \n Search: KDSGYT (Google it )");
 
@@ -10,7 +14,7 @@ const button = document.querySelector(".submit");
 const counts = document.querySelector(".subs");
 const card = document.querySelector(".card");
 const channelBanner = document.querySelector('.banner');
-// const banner = document.querySelector('.banner');
+const error = document.querySelector('.error');
 
 const channelProfileImage = card.querySelector(".card-circle");
 
@@ -44,13 +48,20 @@ async function fetchDataByUsername(input = "pewdiepie") {
     let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${api}`;
     await fetch(url)
         .then((data) => data.json())
-        .then((data) => data.items[0].id.channelId)
+        .then((data) => {
+            try{
+                data.items[0].id.channelId
+            } catch {
+                errorHandler(data);
+            }
+        })
         .then(async (data) => {
             let url = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics%2CbrandingSettings&id=${data}&key=${api}`;
             await fetchData(url);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => console.log(err));
 }
+
 /**
  * GenerateHTML: outputs html to the DOM using selectors.
  * @param { object } data data received from api
@@ -65,7 +76,7 @@ async function generateHTML(data) {
 
         counts.innerHTML = `
         <span>
-            <span class="channelTitle"><h2>${data.snippet.title}</h2> </span>
+            <span class="channelTitle"><h2>${data.snippet.title}</h2></span>
             <div class="stats">
                 <span class="channelSubs">Subs: ${shortNumber(
             data.statistics.subscriberCount
@@ -80,10 +91,14 @@ async function generateHTML(data) {
     }
 }
 
+/**
+ * Update images everytime this function is called with something new. 
+ * @param { string } url url for the thumbnail
+ * @param { string } banner url for the channel banner
+ */
 function updateImages(url, banner) {
     console.log(banner);
     channelProfileImage.style.backgroundImage = `url(${url})`;
-    // channelBanner.style.backgroundImage = `url(${banner});`;
     channelBanner.setAttribute("src", banner);
 }
 
@@ -115,11 +130,14 @@ function shortNumber(labelValue) {
                 : Math.abs(Number(labelValue));
 }
 
+
+function errorHandler(err){
+    console.log(err.error);
+    error.innerHTML = err.error.message;
+}
+
 // Event Listeners for submit events
 document.addEventListener("keyup", (event) => getData(event.key));
 
 // function calls on page load
 fetchDataByUsername();
-// const banner = `https://yt3.ggpht.com/wuqXYCeCdttO0TcwBJR2yy0uJP2hPwTPdrDQpjD00t0Xd_81t6dYeLdVMR24ArD4kuIpWO4hWg=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`;
-
-// channelBanner.style.backgroundImage = `url(${banner});`;
