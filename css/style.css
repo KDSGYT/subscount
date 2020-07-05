@@ -111,7 +111,6 @@ body,
 }
 
 .card .card-top {
-  background-image: url("../img/placeholderImage.png");
   /* background-color: black; */
   background-repeat: no-repeat;
   background-position: center;
@@ -121,13 +120,19 @@ body,
   height: 60%;
 }
 
+.card-top .banner{
+  position: absolute;
+  left:-73%;
+  top: 0;
+}
+
 .card .card-circle {
   position: absolute;
   border: 2px solid black;
-  width: 13vh;
-  height: 13vw;
+  width: 120px;
+  height: 120px;
   top: 41%;
-  left:35.5%;
+  left: 35.5%;
   justify-content: space-around;
   background-image: url("../img/placeholderImage.png");
   background: no-repeat;
@@ -140,7 +145,6 @@ body,
   margin-top: 14%;
   position: relative;
   height: 30vh;
-  
 }
 .result .subs {
   /* margin-top: 40%; */
@@ -150,22 +154,30 @@ body,
   font-size: 30px;
 } */
 
-.result .subs span .channelTitle{
-  width:100%;
+.result .subs span .channelTitle {
+  width: 100%;
   display: block;
   text-align: center;
   /* border:2px solid black; */
 }
 
-.stats{
+.stats {
   margin-top: 1vh;
   /* border:2px solid black; */
   text-align: center;
   font-size: larger;
 }
 
-@media (min-width: 800px) {
+@media screen and (max-width: 800px) and (min-width: 300px) {
   .form {
-    width: 35%;
+    width: 80%;
+  }
+  .card{
+    width:60%;
+  }
+  .card .card-circle{
+    width: 58px;
+    height:58px;
   }
 }
+/* @media screen and (min-width: 800px ) and (max-width:) */
