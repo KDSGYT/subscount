@@ -27,15 +27,17 @@ async function fetchData(url) {
         .then((data) => data.json())
         .then((data) => {
             try {
+                console.log(data);
+
                 let item = data.items[0];
-                console.log(item);
                 generateHTML(item);
             } catch (err) {
-                throw new Error("Not able to locate the channel");
+                throw new Error(err.message);
             }
         })
         .catch((err) => {
-            console.error(err.message);
+            alert(err.message)
+            // console.error(err.message);
         });
 }
 
@@ -49,13 +51,15 @@ async function fetchDataByUsername(input = "pewdiepie") {
     await fetch(url)
         .then((data) => data.json())
         .then((data) => {
-            try{
-                data.items[0].id.channelId
+            try {
+                
+                return data.items[0].id.channelId;
             } catch {
                 errorHandler(data);
             }
         })
         .then(async (data) => {
+            console.log(data);
             let url = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics%2CbrandingSettings&id=${data}&key=${api}`;
             await fetchData(url);
         })
@@ -69,11 +73,12 @@ async function fetchDataByUsername(input = "pewdiepie") {
 async function generateHTML(data) {
     const thumbnails = data.snippet.thumbnails;
     // const banner = `https://yt3.ggpht.com/wuqXYCeCdttO0TcwBJR2yy0uJP2hPwTPdrDQpjD00t0Xd_81t6dYeLdVMR24ArD4kuIpWO4hWg=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`;
-    const banner = data.brandingSettings.image.bannerImageUrl;
-
+    const banner = data.brandingSettings.image;
+    console.log(data.brandingSettings);
     if (!data.message) {
-        if (window.screen.width >= 1024) updateImages(thumbnails.medium.url, banner);
-
+        let width = window.screen.width;
+        if ( width < 600) updateImages(thumbnails.default.url, banner.bannerMobileHdImageUrl);
+        if (width >= 600) updateImages (thumbnails.medium.url, banner.bannerMobileExtraHdImageUrl);
         counts.innerHTML = `
         <span>
             <span class="channelTitle"><h2>${data.snippet.title}</h2></span>
@@ -97,8 +102,9 @@ async function generateHTML(data) {
  * @param { string } banner url for the channel banner
  */
 function updateImages(url, banner) {
-    console.log(banner);
-    channelProfileImage.style.backgroundImage = `url(${url})`;
+    // channelProfileImage.style.backgroundImage = `url(${url})`;
+    channelProfileImage.setAttribute("src", url);
+
     channelBanner.setAttribute("src", banner);
 }
 
@@ -131,9 +137,9 @@ function shortNumber(labelValue) {
 }
 
 
-function errorHandler(err){
+function errorHandler(err) {
     console.log(err.error);
-    error.innerHTML = err.error.message;
+    error.innerHTML = err.error;
 }
 
 // Event Listeners for submit events
