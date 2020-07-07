@@ -81,7 +81,7 @@ async function generateHTML(data) {
         if (width >= 600) updateImages (thumbnails.medium.url, banner.bannerMobileExtraHdImageUrl);
         counts.innerHTML = `
         <span>
-            <span class="channelTitle"><h2>${data.snippet.title}</h2></span>
+            <span class="channelTitle">${data.snippet.title}</span>
             <div class="stats">
                 <span class="channelSubs">Subs: ${shortNumber(
             data.statistics.subscriberCount
@@ -102,8 +102,8 @@ async function generateHTML(data) {
  * @param { string } banner url for the channel banner
  */
 function updateImages(url, banner) {
-    // channelProfileImage.style.backgroundImage = `url(${url})`;
-    channelProfileImage.setAttribute("src", url);
+    channelProfileImage.style.backgroundImage = `url(${url})`;
+    // channelProfileImage.setAttribute("src", url);
 
     channelBanner.setAttribute("src", banner);
 }

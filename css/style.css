@@ -52,14 +52,11 @@ body,
   height: 100%;
 }
 .form {
-  /* border: 2px solid black; */
   font-size: 25px;
   width: 50%;
   position: relative;
   height: 17%;
   overflow: hidden;
-
-  /* background: blue; */
 }
 
 .form input[type="text"] {
@@ -118,6 +115,9 @@ body,
 
 /* Results  */
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   margin-top: 20%;
   width: 50%;
   height: 50%;
@@ -128,12 +128,11 @@ body,
 }
 
 .card .card-top {
-  /* background-color: black; */
   display: flex;
-  /* background-image: url("../img/placeholderImage.png"); */
+  background-image: url("../img/placeholderImage.png");
 
   background-repeat: no-repeat;
-
+  margin-bottom: 6%;
   background-position: center;
   background-size: cover;
   justify-content: space-around;
@@ -143,11 +142,18 @@ body,
 
 .card-top .banner {
   position: absolute;
+  height: 50%;
   /* left:-73%; */
-  top: 0;
+  /* top: 0; */
 }
 
-.card .card-circle {
+.card-bottom{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.card-bottom .card-circle {
   display: flex;
   justify-content: space-around;
   position: absolute;
@@ -155,44 +161,39 @@ body,
   width: 25%;
   height: 30%;
   top: 31%;
-  left: 35%;
-  /* background-image: url("../img/placeholderImage.png"); */
+  background-image: url("../img/placeholderImage.png");
   background: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 100%;
 }
 
+
+
 .result {
-  display: flex;
-  justify-content: space-around;
+  
   margin-top: 5%;
   position: relative;
   height: 20%;
-  /* border: 2px solid black; */
 }
 .result .subs {
   /* margin-top: 40%; */
   align-items: center;
 }
-/* .result .subs span {
-    font-size: 30px;
-  } */
 
 .result .subs span .channelTitle {
   width: 100%;
   display: block;
   text-align: center;
   font-size: x-large;
-  /* border:2px solid black; */
 }
 
 .stats {
   margin-top: 10%;
-  /* border:2px solid black; */
   text-align: center;
   font-size: 1.3em;
 }
+
 
 @media all and (max-width: 600px) {
   .form {
@@ -205,48 +206,165 @@ body,
     width: 90%;
   }
 
-  .card .card-circle {
-    top: 41%;
-    left:35.5%;
-    width: 100px;
-    height: 100px;
+  .card .card-top{
+    margin-bottom: 14%;
+    height:20%;
+
   }
 
+  .card-bottom .card-circle {
+    top: 41%;
+    width: 130px;
+    height: 130px;
+  }
+
+  .card-bottom{
+    display: flex;
+    justify-content: space-around;
+  }
 
   .result{
     margin-top: 22%;
+    margin-bottom: 10px;
   }
 
   .stats{
     margin-top:3%;
   }
-  @media screen and (min-aspect-ratio:16/9) {
+  @media screen and (min-aspect-ratio:19.5/9) {
     .card{
+      height:30%;
       margin-top:34%;
+    }
+    .result{
+      margin-top: 25%;
     }
   }
 }
 
-@media all and (min-width: 1024px){
+@media all and (min-width:600px){
   .card{
+    width: 70%;
+    height:45vh;
+  }
+
+  .card .card-top{
+    margin-bottom: 17%;
+  }
+
+  .card-bottom .card-circle{
+    width:140px;
+    height:140px;
+    margin-top:5%;
+  }
+
+  .result{
+    margin-top: 20%;
+  }
+
+  .form{
+    width: 60%;
+  }
+
+  .form input[type="text"]{
+    padding-top: 28%;
+    font-size: 20px;
+  }
+
+}
+
+@media all and (min-width: 768px){
+  .card{
+    width: 85%;
     margin-top:8%;
-    height:60%;
+    height:80%;
   }
 
   .card .card-circle{
     position: absolute;
     display: flex;
-    /* justify-self: stretch; */
-    top: 43%;
-    width: 150px;
-    height: 150px;
+    top: 35%;
+    width: 170px;
+    height: 170px;
+  }
+
+  .card .card-top{
+    margin-bottom: 8%;
   }
 
   .form{
-    width: 40%;
-    /* overflow: scroll; */
+    width: 80%;
   }
   .form input[type="text"] {
-    padding-top: 10%;
+    padding-top: 17%;
   }
+
+  .result{
+    font-size: 25px;
+    margin-top:18%;
+  }
+
+  .result .subs span .channelTitle{
+    font-size: 45px;
+  }
+}
+
+@media all and (min-width: 992px){
+  .card{
+    width: 75%;
+    margin-top:8%;
+    height:80%;
+  }
+
+  .card .card-top{
+    margin-bottom: 3%;
+  }
+
+  .card .card-circle{
+    position: absolute;
+    display: flex;
+    top: 35%;
+    width: 180px;
+    height: 180px;
+  }
+
+  .form{
+    width: 70%;
+  }
+  .form input[type="text"] {
+    padding-top: 14%;
+    font-size: 30px;
+  }
+
+  .result{
+    font-size: 30px;
+    margin-top:18%;
+  }
+
+  .result .subs span .channelTitle{
+    font-size: 45px;
+  }
+}
+
+@media all and (min-width: 1200px){
+  .card .card-circle{
+    width: 190px;
+    height:190px;
+  }
+  .card{
+    width: 75%;
+  }
+
+  .card .card-top{
+    margin-bottom: 1%;
+  }
+
+  .form{
+    width:60%
+  }
+
+  .form input[type="text"]{
+    padding-top: 12%;
+  }
+
 }
